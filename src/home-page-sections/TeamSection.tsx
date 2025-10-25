@@ -152,61 +152,59 @@ export default function TeamSection() {
   }, []);
 
   return (
-    <div className="w-full bg-[#f3f4f6] py-20">
-      <div className="max-w-8xl mx-auto relative">
-        <div className="mb-8 px-[20%]">
-          <p className="mb-0" style={SECTION_STYLES.subtitle}>
-            the team
-          </p>
-          <h2 style={SECTION_STYLES.title}>The people behind the process</h2>
+    <div id="team" className="w-full">
+      <div className="mb-12 md:px-[20%] px-[5%]">
+        <p className="mb-0" style={SECTION_STYLES.subtitle}>
+          the team
+        </p>
+        <h2 style={SECTION_STYLES.title}>The people behind the process</h2>
+      </div>
+
+      <div className="relative w-full">
+        <div
+          className="absolute left-0 top-0 w-20 h-full z-10 pointer-events-none"
+          style={{
+            background: "linear-gradient(to right, #f3f4f6, transparent)",
+          }}
+        />
+        <div
+          className="absolute right-0 top-0 w-20 h-full z-10 pointer-events-none"
+          style={{
+            background: "linear-gradient(to left, #f3f4f6, transparent)",
+          }}
+        />
+
+        <div className="justify-self-center font-bold h-4 mb-8">
+          {hoveredMember
+            ? hoveredMember.name +
+            " " +
+            hoveredMember.roleEmoji +
+            " " +
+            hoveredMember.role
+            : ""}
         </div>
 
-        <div className="relative w-full">
+        {/* card container */}
+        <div className="overflow-hidden">
           <div
-            className="absolute left-0 top-0 w-20 h-full z-10 pointer-events-none"
-            style={{
-              background: "linear-gradient(to right, #f3f4f6, transparent)",
-            }}
-          />
-          <div
-            className="absolute right-0 top-0 w-20 h-full z-10 pointer-events-none"
-            style={{
-              background: "linear-gradient(to left, #f3f4f6, transparent)",
-            }}
-          />
-
-          <div className="justify-self-center font-bold h-4 mb-8">
-            {hoveredMember
-              ? hoveredMember.name +
-                " " +
-                hoveredMember.roleEmoji +
-                " " +
-                hoveredMember.role
-              : ""}
-          </div>
-
-          {/* card container */}
-          <div className="overflow-hidden">
-            <div
-              ref={scrollRef}
-              className="flex w-max items-center gap-11 will-change-transform"
-            >
-              {duplicatedMembers.map((member, index) => (
-                <div
-                  key={`${member.name}-${index}`}
-                  className="relative h-[155px] w-[155px] flex-shrink-0 overflow-hidden rounded-2xl"
-                  onMouseEnter={() => setHoveredMember(member)}
-                  onMouseLeave={() => setHoveredMember(null)}
-                >
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill={true}
-                    className="object-cover object-top"
-                  />
-                </div>
-              ))}
-            </div>
+            ref={scrollRef}
+            className="flex w-max items-center gap-11 will-change-transform"
+          >
+            {duplicatedMembers.map((member, index) => (
+              <div
+                key={`${member.name}-${index}`}
+                className="relative h-[155px] w-[155px] flex-shrink-0 overflow-hidden rounded-2xl"
+                onMouseEnter={() => setHoveredMember(member)}
+                onMouseLeave={() => setHoveredMember(null)}
+              >
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill={true}
+                  className="object-cover object-top"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
